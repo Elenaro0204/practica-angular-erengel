@@ -1,0 +1,94 @@
+<div class="container mt-4" style="min-height: 100vh; display: flex; flex-direction: column;">
+  <div class="card">
+    <div class="card-header">
+      <h3>Búsqueda de Noticias</h3>
+    </div>
+    <div class="card-body" style="flex-grow: 1;">
+      <form (ngSubmit)="onSearch()">
+        <div class="form-group">
+          <label for="query">Buscar:</label>
+          <input type="text" id="query" class="form-control" [(ngModel)]="query" name="query"
+            placeholder="Escribe tu búsqueda" required />
+        </div>
+
+        <div class="form-group">
+          <label for="category">Categoría:</label>
+          <select id="category" class="form-control" [(ngModel)]="category" name="category">
+            <option value="">Seleccionar categoría</option>
+            <option value="business">Negocios</option>
+            <option value="entertainment">Entretenimiento</option>
+            <option value="general">General</option>
+            <option value="health">Salud</option>
+            <option value="science">Ciencia</option>
+            <option value="sports">Deportes</option>
+            <option value="technology">Tecnología</option>
+          </select>
+        </div>
+
+        <div class="form-group mt-3">
+          <label for="date">Fecha (AAAA-MM-DD):</label>
+          <input type="date" id="date" class="form-control" [(ngModel)]="date" name="date" />
+        </div>
+
+        <div class="form-group mt-3">
+          <label for="source">Fuente:</label>
+          <input type="text" id="source" class="form-control" [(ngModel)]="source" name="source"
+            placeholder="Introduce fuente (opcional)" />
+        </div>
+
+        <div class="form-group mt-3">
+          <label for="language">Idioma:</label>
+          <select id="language" class="form-control" [(ngModel)]="language" name="language">
+            <option value="">Seleccionar idioma</option>
+            <option value="en">Inglés</option>
+            <option value="es">Español</option>
+            <option value="fr">Francés</option>
+            <option value="de">Alemán</option>
+            <option value="it">Italiano</option>
+            <option value="pt">Portugués</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">Buscar</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Resultados de la búsqueda -->
+  <div *ngIf="articles.length > 0" class="mt-4" style="flex-grow: 1;">
+    <h4>Resultados:</h4>
+    <div class="row">
+      <div class="col-sm-12 col-md-6 col-lg-4" *ngFor="let article of displayedArticles">
+        <div class="card mb-4">
+          <img [src]="article.urlToImage" class="card-img-top" alt="Imagen del artículo" *ngIf="article.urlToImage">
+          <div class="card-body">
+            <h5 class="card-title">{{ article.title }}</h5>
+            <p class="card-text">{{ article.description }}</p>
+            <a href="{{ article.url }}" class="btn btn-info" target="_blank">Leer más</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Paginación -->
+  <nav aria-label="Page navigation" style="margin-top: auto;">
+    <ul class="pagination justify-content-center">
+      <li class="page-item" [class.disabled]="currentPage === 1">
+        <a class="page-link" href="#" (click)="changePage(currentPage - 1)" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      <li class="page-item" *ngFor="let page of [].constructor(totalPages); let i = index">
+        <a class="page-link" href="#" (click)="changePage(i + 1)">
+          {{ i + 1 }}
+        </a>
+      </li>
+      <li class="page-item" [class.disabled]="currentPage === totalPages">
+        <a class="page-link" href="#" (click)="changePage(currentPage + 1)" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>
