@@ -15,8 +15,10 @@ import { NewsService } from './services/news.service';  // Asegúrate de importa
 import { DateFormatPipe } from './pipe/date-format.pipe';  // Importa tu pipe personalizada
 
 // CRUD
-import { NewsListComponent } from './components/news-list/news-list.component';
-import { CategoryFilterComponent } from './components/category-filter/category-filter.component';
+import { ArticleListComponent } from './components/CRUD/article-list/article-list.component';
+import { ArticleCreateComponent } from './components/CRUD/article-add/article-add.component';
+import { ArticleEditComponent } from './components/CRUD/article-edit/article-edit.component';
+import { ArticleService } from './services/CRUD-Service/article.service';
 
 
 @NgModule({
@@ -25,6 +27,7 @@ import { CategoryFilterComponent } from './components/category-filter/category-f
     BienvenidaComponent,
     AcercaDeComponent,
     PaginaNoEncontradaComponent,
+    ArticleListComponent,
   ],
 
   imports: [
@@ -33,12 +36,14 @@ import { CategoryFilterComponent } from './components/category-filter/category-f
     HttpClientModule,
     FormsModule,
     BusquedaApiComponent,
-    NewsListComponent,
-    CategoryFilterComponent,
     DateFormatPipe,
-    RouterModule
+    RouterModule,
+   // ArticleListComponent,
+   ArticleCreateComponent,
+   RouterModule.forRoot([
+    { path: 'article-edit/:id', component: ArticleEditComponent }]),
   ],
-  providers: [NewsService],
+  providers: [NewsService, ArticleService],
   bootstrap: [AppComponent]
 })
 

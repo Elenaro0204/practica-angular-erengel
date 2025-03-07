@@ -2,7 +2,8 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
   <div class="container">
     <a class="navbar-brand" href="#">Mi Web</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
@@ -13,8 +14,14 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="/busqueda">Búsqueda API</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/category">Filtrar por Categoría</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            CRUD
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" routerLink="/article-list">Listado</a></li>
+            <li><a class="dropdown-item" routerLink="/article-add">Nuevo Artículo</a></li>
+          </ul>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/acerca-de">Acerca de</a>
@@ -34,10 +41,10 @@
   <div class="container">
     <p>&copy; 2025 Mi Web. Todos los derechos reservados.</p>
     <div class="social-icons">
-      <a href="https://www.facebook.com" class="text-white me-3" target="_blank"><i class="fab fa-facebook fa-lg"></i></a>
+      <a href="https://www.facebook.com" class="text-white me-3" target="_blank"><i
+          class="fab fa-facebook fa-lg"></i></a>
       <a href="https://www.twitter.com" class="text-white me-3" target="_blank"><i class="fab fa-twitter fa-lg"></i></a>
       <a href="https://www.instagram.com" class="text-white" target="_blank"><i class="fab fa-instagram fa-lg"></i></a>
     </div>
   </div>
 </footer>
-
