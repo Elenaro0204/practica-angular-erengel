@@ -1,9 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 /* Fondo de la página principal */
 body {
-  background: url('https://www.example.com/fondo.jpg') no-repeat center center fixed;
-  background-size: cover;
-  color: #fff; /* Texto blanco sobre fondo oscuro */
+  color: #333333; /* Gris oscuro para el texto */
   font-family: 'Poppins', sans-serif;
   margin: 0;
   padding: 0;
@@ -11,12 +9,12 @@ body {
 
 /* Estilo para el navbar */
 .navbar {
-  background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro y translúcido */
+  background-color: #2C8C99; /* Verde Esmeralda para la barra de navegación */
   transition: all 0.3s ease;
 }
 
 .navbar:hover {
-  background-color: #333;
+  background-color: #333; /* Gris oscuro al pasar el ratón */
 }
 
 .navbar-brand {
@@ -28,16 +26,29 @@ body {
   color: #fff !important;
 }
 
+.navbar-dark.bg-dark {
+  background-color: #4a90e2 !important; /* Verde Esmeralda */
+}
+
+/* Cambiar el color de los enlaces de la barra de navegación */
+.navbar-dark .navbar-nav .nav-link {
+  color: #ffffff !important;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: #F4A261 !important; /* Naranja suave al pasar el ratón */
+}
+
 /* Estilo para el hero */
 .welcome-section {
-  background-color: #333;
+  background-color: #333; /* Gris oscuro */
   background-size: cover;
   background-position: center;
   color: white;
   padding: 80px 0;
 }
 
-.welcome-section .cta-buttons a {
+.welcome-section .cta-buttons a, .cta-section .btn-light {
   margin: 0 10px;
   padding: 15px 30px;
   text-transform: uppercase;
@@ -45,81 +56,72 @@ body {
   transition: background-color 0.3s ease;
 }
 
-.welcome-section .cta-buttons a:hover {
-  background-color: #f39c12;
+.welcome-section .cta-buttons a:hover, .cta-section .btn-light:hover {
+  background-color: #F4A261; /* Naranja suave */
   color: white;
-}
-
-/* Testimonial Section */
-.testimonial-section .testimonial-box {
-  background-color: #fff;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-.testimonial-section .testimonial-box h5 {
-  font-weight: bold;
-}
-
-.testimonial-section .testimonial-box p {
-  font-style: italic;
 }
 
 /* Call to Action */
 .cta-section {
-  background-color: #f39c12;
+  background-color: #F4A261; /* Naranja suave */
   color: white;
   padding: 50px 0;
 }
 
+.cta-section .btn-light{
+
+}
 
 /* Estilo para el footer */
 footer {
-  background-color: rgba(0, 0, 0, 0.9);
   color: #f8f9fa;
   padding: 20px 0;
 }
 
+/* Cambiar el fondo del footer */
+footer.bg-dark {
+  background-color: #4a90e2 !important; /* Azul oscuro */
+}
+
+/* Cambiar el color del texto en el footer */
+footer.bg-dark .text-white {
+  color: #F4A261 !important; /* Naranja suave para el texto */
+}
+
 /* Personalización de los botones */
 .btn-primary {
-  background-color: #ff6347; /* Rojo tomate */
+  background-color: #F4A261; /* Naranja suave */
   border: none;
   border-radius: 5px;
 }
 
 .btn-primary:hover {
-  background-color: #ff4500; /* Rojo fuerte */
+  background-color: #D87A3E; /* Naranja más fuerte */
 }
 
 /* Cards con sombra y animación */
 .card {
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s ease-in-out;
-  min-height: 500px;
-}
-
-.card:hover {
-  transform: scale(1.05);
+  min-height: 300px;
 }
 
 .card-header {
-  background-color: #ff6347;
+  background-color: #F4A261; /* Naranja suave para el encabezado */
   color: white;
 }
 
 .card img {
   height: 200px;
-  object-fit: cover; /* Asegura que la imagen se recorte y mantenga el aspecto adecuado */
+  object-fit: cover;
   transition: transform 0.3s ease;
 }
 
 .card-body {
-  min-height: 150px; /* Ajusta la altura mínima del cuerpo del card */
+  min-height: 150px;
 }
 
 .card-title {
-  font-size: 1.2rem; /* Tamaño de fuente para el título */
+  font-size: 1.2rem;
   font-weight: bold;
 }
 

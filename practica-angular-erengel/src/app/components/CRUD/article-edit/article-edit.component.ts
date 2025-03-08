@@ -20,42 +20,39 @@ export class ArticleEditComponent implements OnInit {
     created_at: '',
     updated_at: ''
   };
+  isLoading = true;
 
-  constructor(private articleService: ArticleService, private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private articleService: ArticleService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    if (id) {
-      this.articleService.getArticleById(+id).subscribe((article) => {
-        this.article = article;  // Se actualiza con los valores del artículo real
-      });
-    }
-  }
-
-  saveArticle() {
-    this.article.updated_at = new Date().toISOString();  // Actualiza la fecha de modificación
-    this.articleService.update(this.article.id, this.article).subscribe(
-      (response) => {
-        console.log('Producto actualizado con éxito', response);
+    const id = Number(this.route.snapshot.paramMap.get('id')); // Obtener el ID de la URL
+    this.articleService.getArticleById(id).subscribe(
+      (data) => {
+        this.article = data;  // Asignamos los datos obtenidos al formulario
+        this.isLoading = false;
       },
       (error) => {
-        console.error('Error al actualizar producto', error);
+        console.error('Error al cargar el artículo:', error);
+        this.isLoading = false;
       }
     );
   }
 
   // Método para actualizar el artículo
   updateArticle(): void {
-    if (this.article) {
-      this.articleService.update(this.article.id, this.article).subscribe(
-        (updatedArticle) => {
-          console.log('Artículo actualizado:', updatedArticle);
-        },
-        (error) => {
-          console.error('Error al actualizar artículo:', error);
-        }
-      );
-    }
+    this.articleService.update(this.article.id, this.article).subscribe(
+      (data) => {
+        console.log('Artículo actualizado:', data);
+        this.router.navigate(['/articulos']);  // Redirigir a la lista de artículos o página deseada
+      },
+      (error) => {
+        console.error('Error al actualizar el artículo:', error);
+      }
+    );
   }
 
 }

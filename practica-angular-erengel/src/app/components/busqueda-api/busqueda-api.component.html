@@ -5,48 +5,121 @@
     </div>
     <div class="card-body" style="flex-grow: 1;">
       <form (ngSubmit)="onSearch()">
-        <div class="form-group">
-          <label for="query">Buscar:</label>
-          <input type="text" id="query" class="form-control" [(ngModel)]="query" name="query"
-            placeholder="Escribe tu búsqueda" required />
+        <div class="row">
+          <!-- Campo de Búsqueda -->
+          <div class="form-group">
+            <label for="query">Buscar:</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-search"></i></span>
+              </div>
+              <input type="text" id="query" class="form-control" [(ngModel)]="query" name="query"
+                placeholder="Escribe tu búsqueda" required />
+            </div>
+          </div>
+
+          <!-- Campo de Categoría -->
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="category">Categoría:</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-th-list"></i></span>
+                </div>
+                <select id="category" class="form-select" [(ngModel)]="category" name="category">
+                  <option value="">Seleccionar categoría</option>
+                  <option value="business">Negocios</option>
+                  <option value="entertainment">Entretenimiento</option>
+                  <option value="general">General</option>
+                  <option value="health">Salud</option>
+                  <option value="science">Ciencia</option>
+                  <option value="sports">Deportes</option>
+                  <option value="technology">Tecnología</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Campo de Autor -->
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="author">Autor:</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-pen"></i></span>
+                </div>
+                <input type="text" id="author" class="form-control" [(ngModel)]="author" name="author"
+                  placeholder="Introduce el autor" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Campo de Fecha -->
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="date">Fecha:</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                </div>
+                <input type="date" id="date" class="form-control" [(ngModel)]="date" name="date" />
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="form-group">
-          <label for="category">Categoría:</label>
-          <select id="category" class="form-control" [(ngModel)]="category" name="category">
-            <option value="">Seleccionar categoría</option>
-            <option value="business">Negocios</option>
-            <option value="entertainment">Entretenimiento</option>
-            <option value="general">General</option>
-            <option value="health">Salud</option>
-            <option value="science">Ciencia</option>
-            <option value="sports">Deportes</option>
-            <option value="technology">Tecnología</option>
-          </select>
-        </div>
+        <div class="row">
+          <!-- Campo de Fuente -->
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="source">Fuente:</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-newspaper"></i></span>
+                </div>
+                <input type="text" id="source" class="form-control" [(ngModel)]="source" name="source"
+                  placeholder="Introduce fuente (opcional)" />
+              </div>
+            </div>
+          </div>
 
-        <div class="form-group mt-3">
-          <label for="date">Fecha (AAAA-MM-DD):</label>
-          <input type="date" id="date" class="form-control" [(ngModel)]="date" name="date" />
-        </div>
+          <!-- Campo de Idioma -->
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="language">Idioma:</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-language"></i></span>
+                </div>
+                <select id="language" class="form-select" [(ngModel)]="language" name="language">
+                  <option value="">Seleccionar idioma</option>
+                  <option value="en">Inglés</option>
+                  <option value="es">Español</option>
+                  <option value="fr">Francés</option>
+                  <option value="de">Alemán</option>
+                  <option value="it">Italiano</option>
+                  <option value="pt">Portugués</option>
+                </select>
+              </div>
+            </div>
+          </div>
 
-        <div class="form-group mt-3">
-          <label for="source">Fuente:</label>
-          <input type="text" id="source" class="form-control" [(ngModel)]="source" name="source"
-            placeholder="Introduce fuente (opcional)" />
-        </div>
-
-        <div class="form-group mt-3">
-          <label for="language">Idioma:</label>
-          <select id="language" class="form-control" [(ngModel)]="language" name="language">
-            <option value="">Seleccionar idioma</option>
-            <option value="en">Inglés</option>
-            <option value="es">Español</option>
-            <option value="fr">Francés</option>
-            <option value="de">Alemán</option>
-            <option value="it">Italiano</option>
-            <option value="pt">Portugués</option>
-          </select>
+          <!-- Campo de Ordenar -->
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="sortBy">Ordenar por:</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-sort"></i></span>
+                </div>
+                <select id="sortBy" class="form-select" [(ngModel)]="sortBy" name="orden">
+                  <option value="publishedAt">Más recientes</option>
+                  <option value="relevancy">Más relevantes</option>
+                  <option value="popularity">Más populares</option>
+                </select>
+              </div>
+            </div>
+          </div>
         </div>
 
         <button type="submit" class="btn btn-primary mt-3">Buscar</button>

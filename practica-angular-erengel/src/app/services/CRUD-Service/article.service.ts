@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { ArticleResponse } from '../../interface/article-response.interface';
+import { IArticle } from '../../interface/article.interface'; // Asegúrate de importar IArticle
 
 @Injectable({
   providedIn: 'root'
@@ -11,24 +12,33 @@ export class ArticleService {
 
   constructor(private http: HttpClient) { }
 
+  // Método para obtener todos los artículos
   getAll(): Observable<ArticleResponse> {
-    return this.http.get<ArticleResponse>(this.apiUrl); // Cambia el tipo a ArticleResponse
+    return this.http.get<ArticleResponse>(this.apiUrl);
   }
 
-  // article.service.ts
-  getArticleById(id: number): Observable<any> {
-    const url = `${this.apiUrl}/${id}`;  // Asegúrate de que esta sea la URL correcta para obtener el artículo por ID
-    return this.http.get(url);  // Realiza una solicitud GET
+  // Método para obtener un artículo por su ID
+  getArticleById(id: number): Observable<IArticle> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.get<IArticle>(url);
   }
 
-  create(article: any): Observable<any> {
-    return this.http.post(this.apiUrl, article);
+  // Método para crear un artículo
+  create(article: IArticle): Observable<IArticle> {
+    return this.http.post<IArticle>(this.apiUrl, article).pipe(
+      catchError(error => {
+        console.error('Error en la creación del artículo:', error);
+        return throwError(error);  // Propaga el error
+      })
+    );
   }
 
-  update(id: number, article: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${id}`, article);
+  // Método para actualizar un artículo
+  update(id: number, article: IArticle): Observable<IArticle> {
+    return this.http.put<IArticle>(`${this.apiUrl}/${id}`, article);
   }
 
+  // Método para eliminar un artículo
   delete(id: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }

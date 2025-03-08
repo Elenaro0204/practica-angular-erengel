@@ -1,13 +1,12 @@
-<form (ngSubmit)="addArticle()">
-  <div>
-    <label for="descripcion">Descripción</label>
-    <input type="text" id="descripcion" [(ngModel)]="newArticle.descripcion" name="descripcion" required />
+<form (ngSubmit)="addArticle()" style="min-height: 100vh;">
+  <div class="form-group">
+    <label for="descripcion">Título</label>
+    <input type="text" class="form-control" [(ngModel)]="article.descripcion" name="descripcion" required />
   </div>
-
-  <div>
+  <div class="form-group">
     <label for="precio">Precio</label>
-    <input type="number" id="precio" [(ngModel)]="newArticle.precio" name="precio" required />
+    <input type="number" class="form-control" [(ngModel)]="article.precio" name="precio" required />
   </div>
-
-  <button type="submit">Añadir Producto</button>
+  <button type="submit" class="btn btn-primary mt-3">Añadir Artículo</button>
 </form>
+

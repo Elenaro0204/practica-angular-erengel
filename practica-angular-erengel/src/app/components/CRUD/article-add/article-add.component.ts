@@ -12,8 +12,8 @@ import { IArticle } from '../../../interface/article.interface';
   styleUrls: ['./article-add.component.css']
 })
 export class ArticleCreateComponent {
-  newArticle: IArticle = {
-    id: 0,  // id es usualmente generado por la base de datos
+  article: IArticle = {
+    id: 0,  // No necesitamos asignar un id, será generado automáticamente por la base de datos
     descripcion: '',
     precio: 0,
     created_at: new Date().toISOString(),  // Asigna la fecha actual
@@ -22,14 +22,18 @@ export class ArticleCreateComponent {
 
   constructor(private articleService: ArticleService) {}
 
-  addArticle() {
-    this.articleService.create(this.newArticle).subscribe(
-      response => {
-        console.log('Producto creado con éxito', response);
-        // Aquí puedes redirigir a una lista de artículos o limpiar el formulario
+  addArticle(): void {
+    this.articleService.create(this.article).subscribe(
+      (response) => {
+        console.log('Artículo añadido con éxito:', response);
       },
-      error => {
-        console.error('Error al crear producto', error);
+      (error) => {
+        console.error('Error al añadir el artículo:', error);
+        // Mostrar detalles más completos sobre el error
+        if (error.status === 500) {
+          console.error('Error interno del servidor:', error.message);
+          alert('Hubo un error al añadir el artículo. Por favor, inténtalo de nuevo más tarde.');
+        }
       }
     );
   }
