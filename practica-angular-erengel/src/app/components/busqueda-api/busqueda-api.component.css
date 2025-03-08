@@ -1,0 +1,133 @@
+/* Estilos para la tarjeta principal */
+.container {
+  min-height: 100vh !important;
+}
+
+.card {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 95%;
+  /* Asegura que las tarjetas ocupen el mismo alto */
+}
+
+.card-header {
+  background-color: #4a90e2;
+  color: white;
+  font-size: 1.5rem;
+  padding: 10px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.card-body {
+  padding: 20px;
+  flex-grow: 1;
+  /* Hace que el contenido del cuerpo de la tarjeta ocupe el espacio restante */
+  display: flex;
+  flex-direction: column;
+}
+
+.card-footer {
+  padding: 10px;
+  background-color: #f1f1f1;
+  text-align: center;
+}
+
+/* Estilos del formulario */
+.form-group {
+  margin-bottom: 15px;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+}
+
+.input-group-text {
+  background-color: #f1f1f1;
+  border: 1px solid #ced4da;
+}
+
+.form-control {
+  border-radius: 0;
+}
+
+.form-select {
+  border-radius: 0;
+}
+
+/* Iconos de los campos */
+.input-group-prepend .input-group-text {
+  background-color: #e9ecef;
+}
+
+.input-group-text i {
+  color: #F4A261;
+}
+
+/* Estilos de botones */
+.btn {
+  font-size: 1rem;
+}
+
+.btn-primary {
+  background-color: #4a90e2;
+  border: 1px solid #4a90e2;
+}
+
+.btn-info {
+  color: #f8f9fa;
+  background-color: #4a90e2;
+  border: 1px solid #4a90e2;
+}
+
+.btn-light {
+  background-color: #f8f9fa;
+  border: 1px solid #ced4da;
+}
+
+.page-link {
+  color: #4a90e2;
+}
+
+.page-item.disabled .page-link {
+  color: #6c757d;
+}
+
+/* Estilos de resultados */
+.card-img-top {
+  width: 100%;
+  height: auto;
+}
+
+.card-body {
+  background-color: #f8f9fa;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.card-text {
+  font-size: 1rem;
+}
+
+.pagination {
+  margin-top: 20px;
+}
+
+/* Espaciado de la paginación */
+.pagination .page-item {
+  margin: 0 5px;
+}
+
+.pagination .page-item.disabled .page-link {
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+.pagination .page-item .page-link {
+  padding: 0.5rem 1rem;
+}

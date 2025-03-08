@@ -9,7 +9,6 @@ body {
 
 /* Estilo para el navbar */
 .navbar {
-  background-color: #2C8C99; /* Verde Esmeralda para la barra de navegación */
   transition: all 0.3s ease;
 }
 
@@ -37,35 +36,6 @@ body {
 
 .navbar-dark .navbar-nav .nav-link:hover {
   color: #F4A261 !important; /* Naranja suave al pasar el ratón */
-}
-
-/* Estilo para el hero */
-.welcome-section {
-  background-color: #333; /* Gris oscuro */
-  background-size: cover;
-  background-position: center;
-  color: white;
-  padding: 80px 0;
-}
-
-.welcome-section .cta-buttons a, .cta-section .btn-light {
-  margin: 0 10px;
-  padding: 15px 30px;
-  text-transform: uppercase;
-  border-radius: 50px;
-  transition: background-color 0.3s ease;
-}
-
-.welcome-section .cta-buttons a:hover, .cta-section .btn-light:hover {
-  background-color: #F4A261; /* Naranja suave */
-  color: white;
-}
-
-/* Call to Action */
-.cta-section {
-  background-color: #F4A261; /* Naranja suave */
-  color: white;
-  padding: 50px 0;
 }
 
 /* Estilo para el footer */

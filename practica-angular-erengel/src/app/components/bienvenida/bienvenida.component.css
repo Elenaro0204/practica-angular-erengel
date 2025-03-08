@@ -1,0 +1,126 @@
+/* Hero Image */
+.welcome-section {
+  background-image: url('https://images.pexels.com/photos/938165/pexels-photo-938165.jpeg?auto=compress&cs=tinysrgb&w=600');
+  background-size: cover;
+  background-position: center;
+}
+
+.welcome-section .container {
+  text-align: center;
+  color: white;
+}
+
+.welcome-section .display-4 {
+  margin-bottom: 1.5rem;
+  animation: fadeIn 1s;
+}
+
+.welcome-section .lead {
+  margin-bottom: 1.5rem;
+  animation: fadeIn 1s 1s;
+}
+
+.welcome-section .cta-buttons {
+  animation: fadeIn 1s 2s;
+}
+
+/* Features Section */
+.features-section {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  background-color: #f8f9fa;
+}
+
+.features-section .container {
+  text-align: center;
+}
+
+.features-section .display-5 {
+  margin-bottom: 1.5rem;
+}
+
+.features-section .feature-box {
+  padding: 1.5rem;
+  background-color: white;
+  border-radius: 0.375rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.features-section .feature-box i {
+  margin-bottom: 1rem;
+  color: #4a90e2;
+}
+
+.features-section .feature-box h4 {
+  margin-bottom: 1rem;
+}
+
+/* Call to Action Section */
+.cta-section {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  background-color: #4a90e2;
+  color: white;
+  text-align: center;
+}
+
+.cta-section .display-4 {
+  margin-bottom: 1.5rem;
+}
+
+.cta-section .lead {
+  margin-bottom: 1.5rem;
+}
+
+.cta-section .btn-light {
+  color: #4a90e2;
+  background-color: white;
+  border: none;
+  padding: 0.75rem 2rem;
+  font-size: 1.25rem;
+  border-radius: 0.375rem;
+}
+
+.cta-section .btn-light:hover {
+  background-color: #e2e6ea;
+}
+
+
+/* Estilo para el hero */
+.welcome-section {
+  background-color: #333; /* Gris oscuro */
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding: 80px 0;
+}
+
+.btn-primary{
+  background-color: #4a90e2; /* Naranja suave */
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  text-transform: uppercase;
+  border-radius: 50px;
+  transition: background-color 0.3s ease;
+}
+
+.welcome-section .cta-buttons a, .cta-section .btn-light, .btn-primary {
+  margin: 0 10px;
+  padding: 15px 30px;
+  text-transform: uppercase;
+  border-radius: 50px;
+  transition: background-color 0.3s ease;
+}
+
+.welcome-section .cta-buttons a:hover, .cta-section .btn-light:hover, .btn-primary:hover {
+  background-color: #F4A261; /* Naranja suave */
+  color: white;
+}
+
+/* Call to Action */
+.cta-section {
+  background-color: #F4A261; /* Naranja suave */
+  color: white;
+  padding: 50px 0;
+}
