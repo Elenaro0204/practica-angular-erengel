@@ -9,7 +9,7 @@ import { IArticle } from '../../../interface/article.interface';  // Importa la 
   styleUrl: './article-list.component.css',  // Vincula los estilos CSS con el componente
 })
 export class ArticleListComponent implements OnInit {
-  articles: IArticle[] = [];  // Array vacío donde se almacenarán los artículos
+  articulos: IArticle[] = [];  // Array vacío donde se almacenarán los artículos
 
   constructor(private articleService: ArticleService) {}  // Inyecta el servicio de artículos en el constructor
 
@@ -21,11 +21,11 @@ export class ArticleListComponent implements OnInit {
   loadArticles(): void {
     this.articleService.getAll().subscribe(
       (data) => {
-        console.log(data);  // Muestra la respuesta de la API en la consola
-        this.articles = data.articulos;  // Asigna los artículos obtenidos a la propiedad 'articles'
+        console.log('Datos de la API:', data);  // Verifica si los datos están llegando correctamente
+        this.articulos = data.articulos;  // Asigna los artículos a la propiedad
       },
       (error) => {
-        console.error('Error al cargar artículos:', error);  // Maneja errores en caso de que falle la petición
+        console.error('Error al cargar artículos:', error);
       }
     );
   }
@@ -35,7 +35,7 @@ export class ArticleListComponent implements OnInit {
     this.articleService.getAll().subscribe(
       (data) => {
         console.log(data);  // Muestra la respuesta de la API para verificar los datos
-        this.articles = data.articulos;  // Asigna los artículos obtenidos
+        this.articulos = data.articulos;  // Asigna los artículos obtenidos
       },
       (error) => {
         console.error('Error al cargar los artículos', error);  // Maneja errores
@@ -44,15 +44,20 @@ export class ArticleListComponent implements OnInit {
   }
 
   // Método para eliminar un artículo
-  deleteArticle(id: number): void {
-    this.articleService.delete(id).subscribe(
-      () => {
-        // Lógica después de eliminar el artículo
-        this.loadArticles();  // Vuelve a cargar los artículos después de la eliminación
-      },
-      (error) => {
-        console.error('Error al eliminar el artículo:', error);  // Maneja errores al eliminar
-      }
-    );
+  deleteArticle(id: number | undefined): void {
+    if (id !== undefined) {
+      // Llamada al servicio para eliminar el artículo
+      this.articleService.delete(id).subscribe(
+        (response) => {
+          console.log('Artículo eliminado:', response);
+          this.loadArticles();  // Vuelve a cargar los artículos después de eliminar
+        },
+        (error) => {
+          console.error('Error al eliminar artículo:', error);
+        }
+      );
+    } else {
+      console.error('El ID del artículo es undefined');
+    }
   }
 }

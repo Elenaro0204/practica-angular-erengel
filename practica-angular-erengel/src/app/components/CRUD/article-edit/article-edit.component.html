@@ -1,15 +1,56 @@
-<div *ngIf="isLoading">Cargando...</div>
-<div *ngIf="!isLoading">
+<div>
   <h2>Editar Artículo</h2>
-  <form (ngSubmit)="updateArticle()" style="min-height: 100vh;">
-    <div class="form-group">
-      <label for="descripcion">Título</label>
-      <input type="text" class="form-control" [(ngModel)]="article.descripcion" name="descripcion" required />
+
+  <!-- Funciona pero es necesario meter el id -->
+  <!-- <form [formGroup]="articuloForm" (ngSubmit)="actualizarArticulo()">
+    <label for="id">ID del Artículo:</label>
+    <input id="id" type="number" formControlName="id">
+
+    <label for="descripcion">Descripción:</label>
+    <input id="descripcion" type="text" formControlName="descripcion">
+
+    <label for="precio">Precio:</label>
+    <input id="precio" type="number" formControlName="precio">
+
+    <button type="submit" [disabled]="articuloForm.invalid">Actualizar Artículo</button>
+  </form> -->
+
+  <div *ngIf="articuloForm.valid" class="container mt-5">
+    <!-- Mostrar los detalles del artículo -->
+    <div *ngIf="articuloForm.value.descripcion && articuloForm.value.precio" class="card mb-4 shadow-lg">
+      <div class="card-body">
+        <h2 class="card-title text-center text-primary mb-3">Producto que estás editando:</h2>
+        <p><strong>Nombre del producto:</strong> <span class="text-muted"> {{ articuloForm.value.descripcion }}</span></p>
+        <p><strong>Precio:</strong> <span class="text-success"> {{ articuloForm.value.precio }} €</span></p>
+      </div>
     </div>
-    <div class="form-group">
-      <label for="precio">Precio</label>
-      <input type="number" class="form-control" [(ngModel)]="article.precio" name="precio" required />
+
+    <!-- Formulario para editar el artículo -->
+    <form [formGroup]="articuloForm" (ngSubmit)="actualizarArticulo()" class="card p-4 shadow-lg">
+      <h3 class="text-center mb-4 text-info">Editar Producto</h3>
+
+      <div class="mb-3">
+        <label for="descripcion" class="form-label">Nombre del Producto</label>
+        <input id="descripcion" formControlName="descripcion" class="form-control" placeholder="Escribe una nueva descripción..." />
+      </div>
+
+      <div class="mb-3">
+        <label for="precio" class="form-label">Precio</label>
+        <input id="precio" formControlName="precio" type="number" class="form-control" placeholder="Escribe el nuevo precio..." />
+      </div>
+
+      <div class="text-center">
+        <button type="submit" class="btn btn-success" [disabled]="!articuloForm.valid">Actualizar</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Si el formulario aún no está listo, puedes mostrar un mensaje de carga -->
+  <div *ngIf="!articuloForm.valid" class="text-center mt-4">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Cargando...</span>
     </div>
-    <button type="submit" class="btn btn-primary mt-3">Actualizar Artículo</button>
-  </form>
+    <p class="mt-3">Cargando el artículo...</p>
+  </div>
+
 </div>

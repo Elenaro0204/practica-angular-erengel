@@ -21,6 +21,7 @@ const routes: Routes = [
   { path: 'article-add', component: ArticleCreateComponent },  // Ruta para crear artículos
   { path: 'article-edit/:id', component: ArticleEditComponent },  // Ruta para editar un artículo, usando un id
   { path: '**', component: PaginaNoEncontradaComponent },  // Ruta para manejar errores 404, cuando no se encuentra una ruta
+  { path: '**', redirectTo: 'list-movies' },
   { path: '', redirectTo: '/article-list', pathMatch: 'full' }  // Redirección por defecto a la lista de artículos
 ];
 

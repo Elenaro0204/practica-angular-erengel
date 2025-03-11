@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';  // Importa la clase Injectable para permitir la inyección de dependencias
-import { HttpClient } from '@angular/common/http';  // Importa HttpClient para realizar peticiones HTTP
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';  // Importa HttpClient para realizar peticiones HTTP
 import { catchError, Observable, throwError } from 'rxjs';  // Importa operadores y funciones necesarias para manejo de errores y trabajar con observables
 import { ArticleResponse } from '../../interface/article-response.interface';  // Importa la interfaz ArticleResponse para la respuesta de los artículos
 import { IArticle } from '../../interface/article.interface';  // Importa la interfaz IArticle para el tipo de artículo
@@ -23,19 +23,28 @@ export class ArticleService {
     return this.http.get<IArticle>(url);  // Realiza una petición GET para obtener el artículo con ese ID
   }
 
-  // Método para crear un artículo
-  create(article: IArticle): Observable<IArticle> {  // Recibe un objeto IArticle y retorna un Observable de tipo IArticle
-    return this.http.post<IArticle>(this.apiUrl, article).pipe(  // Realiza una petición POST para crear un nuevo artículo
-      catchError(error => {  // Maneja cualquier error que ocurra durante la petición
-        console.error('Error en la creación del artículo:', error);  // Muestra el error en la consola
-        return throwError(error);  // Propaga el error para que lo maneje el componente que lo llame
-      })
-    );
+  // Método para crear un artículo (realiza la solicitud POST)
+  crearArticulo(descripcion: string, precio: number): Observable<any> {
+    const body = new URLSearchParams();
+    // Convierte el objeto JSON a cadena
+    const jsonData = JSON.stringify({ descripcion, precio });
+    body.set('json', jsonData);
+
+    // Configuración de encabezados
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/x-www-form-urlencoded');
+
+    return this.http.post(this.apiUrl, body.toString(), { headers });
   }
 
   // Método para actualizar un artículo
-  update(id: number, article: IArticle): Observable<IArticle> {  // Recibe un ID y un objeto IArticle para actualizar
-    return this.http.put<IArticle>(`${this.apiUrl}/${id}`, article);  // Realiza una petición PUT para actualizar el artículo
+  actualizarArticulo(id: number, articulo: any): Observable<any> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
+
+    const body = new URLSearchParams();
+    body.set('json', JSON.stringify(articulo));
+
+    return this.http.put(`${this.apiUrl}/${id}`, body.toString(), { headers });
   }
 
   // Método para eliminar un artículo

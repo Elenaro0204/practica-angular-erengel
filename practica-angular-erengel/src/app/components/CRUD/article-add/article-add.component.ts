@@ -3,6 +3,7 @@ import { ArticleService } from '../../../services/CRUD-Service/article.service';
 import { FormsModule } from '@angular/forms';  // Importa FormsModule para manejar formularios
 import { CommonModule } from '@angular/common';  // Importa CommonModule para directivas comunes como ngIf, ngFor
 import { IArticle } from '../../../interface/article.interface';  // Importa la interfaz para definir el tipo de artículo
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-article-add',  // Define el selector para el componente
@@ -13,33 +14,35 @@ import { IArticle } from '../../../interface/article.interface';  // Importa la 
 })
 
 export class ArticleCreateComponent {
-  // Define un artículo con valores predeterminados
-  article: IArticle = {
-    id: 0,  // El ID será generado automáticamente por la base de datos
-    descripcion: '',  // Descripción vacía por defecto
-    precio: 0,  // Precio 0 por defecto
-    created_at: new Date().toISOString(),  // La fecha de creación es la fecha actual
-    updated_at: new Date().toISOString()   // La fecha de actualización es la fecha actual
-  };
+  descripcion = '';
+  precio = 0;
+  loading = false;  // Estado de carga
 
-  // Inyecta el servicio ArticleService en el constructor para poder utilizar sus métodos
-  constructor(private articleService: ArticleService) {}
+  constructor(private ArticleService: ArticleService, private router: Router) { }
 
-  // Método para añadir un artículo
-  addArticle(): void {
-    // Llama al servicio para crear un artículo y maneja la respuesta
-    this.articleService.create(this.article).subscribe(
-      (response) => {
-        console.log('Artículo añadido con éxito:', response);  // Muestra la respuesta si se añade correctamente
+  // Método para enviar los datos
+  enviarArticulo() {
+    if (this.loading) {
+      return; // Si está en carga, no hacer nada
+    }
+    this.loading = true;  // Activar carga
+
+    this.ArticleService.crearArticulo(this.descripcion, this.precio).subscribe(
+      response => {
+        console.log('Respuesta de la API:', response);
+        console.log('Artículo añadido:', response);
+        this.router.navigate(['/article-list']);
       },
-      (error) => {
-        console.error('Error al añadir el artículo:', error);  // Muestra el error en consola si ocurre un fallo
-        // Muestra detalles más completos sobre el error
-        if (error.status === 500) {
-          console.error('Error interno del servidor:', error.message);  // Muestra el mensaje si hay un error 500
-          alert('Hubo un error al añadir el artículo. Por favor, inténtalo de nuevo más tarde.');  // Alerta al usuario
+      error => {
+        console.error('Error en la solicitud:', error);
+        if (error.error) {
+          console.error('Detalles del error:', error.error);
         }
+      },
+      () => {
+        this.loading = false; // Desactivar carga al finalizar la solicitud
       }
     );
   }
+
 }

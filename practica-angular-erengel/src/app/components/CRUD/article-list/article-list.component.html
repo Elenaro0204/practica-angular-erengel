@@ -11,16 +11,16 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngIf="articles.length === 0">
+      <tr *ngIf="articulos.length === 0">
         <td colspan="4">No se encontraron artículos.</td>
       </tr>
-      <tr *ngFor="let article of articles">
-        <td>{{ article.id }}</td>
-        <td>{{ article.descripcion }}</td>
-        <td>{{ article.precio }}</td>
+      <tr *ngFor="let articulo of articulos">
+        <td>{{ articulo.id }}</td>
+        <td>{{ articulo.descripcion }}</td>
+        <td>{{ articulo.precio }}</td>
         <td>
-          <a [routerLink]="['/article-edit', article.id]" class="btn btn-warning btn-sm">Editar</a>
-          <button (click)="deleteArticle(article.id)" class="btn btn-danger btn-sm ms-2">Eliminar</button>
+          <a [routerLink]="['/article-edit', articulo.id]" class="btn btn-warning btn-sm">Editar</a>
+          <button (click)="deleteArticle(articulo.id)" class="btn btn-danger btn-sm ms-2">Eliminar</button>
         </td>
       </tr>
     </tbody>
