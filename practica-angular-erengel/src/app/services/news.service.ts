@@ -10,7 +10,8 @@ import { catchError } from 'rxjs/operators';  // Importa el operador catchError 
 // Clase que proporciona métodos para obtener noticias
 export class NewsService {
   private apiKey = 'cfc52aff853c423189576fe444a57aab';  // Define la clave de la API para acceder a los servicios de noticias
-  private apiUrl = 'https://newsapi.org/v2/everything';  // URL base de la API de noticias
+  // private apiUrl = 'https://newsapi.org/v2/everything';  // URL base de la API de noticias
+  private apiUrl = '/news';  // URL base de la API de noticias
 
   constructor(private http: HttpClient) { }  // Inyección del servicio HttpClient para realizar las peticiones HTTP
 
@@ -23,14 +24,22 @@ export class NewsService {
   // }
 
   // Método para obtener todas las noticias
-  getNews(country: string = 'us'): Observable<any> {  // Parámetro opcional 'country' con valor por defecto 'us' (Estados Unidos)
-    return this.http.get(`${this.apiUrl}?country=${country}&apiKey=${this.apiKey}`)  // Realiza una petición GET con los parámetros adecuados
-      .pipe(
-        catchError(error => {  // Captura cualquier error que ocurra durante la petición HTTP
-          console.error('Error al obtener las noticias:', error);  // Muestra el error en la consola
-          throw error;  // Lanza el error para que lo maneje el componente o servicio que lo consuma
-        })
-      );
+  // getNews(country: string = 'us'): Observable<any> {  // Parámetro opcional 'country' con valor por defecto 'us' (Estados Unidos)
+  //   return this.http.get(`${this.apiUrl}?country=${country}&apiKey=${this.apiKey}`)  // Realiza una petición GET con los parámetros adecuados
+  //     .pipe(
+  //       catchError(error => {  // Captura cualquier error que ocurra durante la petición HTTP
+  //         console.error('Error al obtener las noticias:', error);  // Muestra el error en la consola
+  //         throw error;  // Lanza el error para que lo maneje el componente o servicio que lo consuma
+  //       })
+  //     );
+  // }
+  getNews(query: string): Observable<any> {  // Parámetro opcional 'country' con valor por defecto 'us' (Estados Unidos)
+    const params = new HttpParams()
+      .set('apiKey', 'cfc52aff853c423189576fe444a57aab')
+      .set('q', query)
+      .set('sortBy', 'publishedAt');
+    // return this.http.get(`${this.apiUrl}?country=${country}&apiKey=${this.apiKey}`)  // Realiza una petición GET con los parámetros adecuados
+    return this.http.get('/news', { params });
   }
 
   // Método para obtener noticias por categoría
