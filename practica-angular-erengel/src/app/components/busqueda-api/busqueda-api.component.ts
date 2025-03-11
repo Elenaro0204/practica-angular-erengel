@@ -102,9 +102,11 @@ export class BusquedaApiComponent {
 
   // Método para cambiar la página actual
   changePage(page: number) {
+    console.log('Cambiando a la página:', page);
     if (page >= 1 && page <= this.totalPages) {
       this.currentPage = page;  // Si la página es válida, actualiza la página actual
       this.updateDisplayedArticles();  // Actualiza los artículos para esa página
+      console.log('Página actual:', this.currentPage);
     }
   }
 }
