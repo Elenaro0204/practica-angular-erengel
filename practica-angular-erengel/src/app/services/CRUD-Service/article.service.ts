@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';  // Importa la clase Injectable para permitir la inyección de dependencias
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';  // Importa HttpClient para realizar peticiones HTTP
-import { catchError, Observable, throwError } from 'rxjs';  // Importa operadores y funciones necesarias para manejo de errores y trabajar con observables
+import { HttpClient, HttpHeaders} from '@angular/common/http';  // Importa HttpClient para realizar peticiones HTTP
+import {Observable} from 'rxjs';  // Importa operadores y funciones necesarias para manejo de errores y trabajar con observables
 import { ArticleResponse } from '../../interface/article-response.interface';  // Importa la interfaz ArticleResponse para la respuesta de los artículos
 import { IArticle } from '../../interface/article.interface';  // Importa la interfaz IArticle para el tipo de artículo
 
@@ -25,27 +25,31 @@ export class ArticleService {
 
   // Método para crear un artículo (realiza la solicitud POST)
   crearArticulo(descripcion: string, precio: number): Observable<any> {
+    // Se crea un nuevo objeto URLSearchParams para enviar los datos como parámetros de formulario
     const body = new URLSearchParams();
-    // Convierte el objeto JSON a cadena
+    // Convierte el objeto JSON con los datos del artículo en una cadena
     const jsonData = JSON.stringify({ descripcion, precio });
+    // Se añade el JSON como parámetro 'json' al body
     body.set('json', jsonData);
-
-    // Configuración de encabezados
+    // Configuración de encabezados (se indica que el tipo de contenido es 'application/x-www-form-urlencoded')
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/x-www-form-urlencoded');
-
+    // Realiza la solicitud POST al servidor, enviando el body con los datos del artículo y los encabezados
     return this.http.post(this.apiUrl, body.toString(), { headers });
   }
 
-  // Método para actualizar un artículo
+  // Método para actualizar un artículo (realiza la solicitud PUT)
   actualizarArticulo(id: number, articulo: any): Observable<any> {
+    // Configuración de encabezados, especificando el tipo de contenido como 'application/x-www-form-urlencoded'
     const headers = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
-
+    // Se crea un nuevo objeto URLSearchParams para enviar los datos como parámetros de formulario
     const body = new URLSearchParams();
+    // Se convierte el objeto artículo a formato JSON y se añade al body
     body.set('json', JSON.stringify(articulo));
-
+    // Realiza la solicitud PUT al servidor, enviando el body con los datos actualizados del artículo y los encabezados
     return this.http.put(`${this.apiUrl}/${id}`, body.toString(), { headers });
   }
+
 
   // Método para eliminar un artículo
   delete(id: number): Observable<any> {  // Recibe un ID como parámetro para eliminar un artículo

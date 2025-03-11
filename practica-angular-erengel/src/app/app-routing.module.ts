@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 
 // Importación de los componentes que serán utilizados en las rutas
 import { BienvenidaComponent } from './components/bienvenida/bienvenida.component';
@@ -11,6 +11,7 @@ import { PaginaNoEncontradaComponent } from './components/pagina-no-encontrada/p
 import { ArticleListComponent } from './components/CRUD/article-list/article-list.component';
 import { ArticleCreateComponent } from './components/CRUD/article-add/article-add.component';
 import { ArticleEditComponent } from './components/CRUD/article-edit/article-edit.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 // Definición de las rutas de la aplicación
 const routes: Routes = [
@@ -24,8 +25,15 @@ const routes: Routes = [
   { path: '', redirectTo: '/article-list', pathMatch: 'full' }  // Redirección por defecto a la lista de artículos
 ];
 
+const routerOptions: ExtraOptions = {
+  useHash: true, // Esto utiliza el hash en la URL para las rutas
+};
+
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],  // Importa y configura las rutas en el módulo
-  exports: [RouterModule]  // Exporta RouterModule para que pueda ser utilizado en toda la aplicación
+  imports: [RouterModule.forRoot(routes, routerOptions)],  // Importa y configura las rutas en el módulo
+  exports: [RouterModule],  // Exporta RouterModule para que pueda ser utilizado en toda la aplicación
+  providers: [
+    { provide: LocationStrategy, useClass: HashLocationStrategy }  // Configuración para usar HashLocationStrategy
+  ]
 })
 export class AppRoutingModule { }  // Clase que define el módulo de enrutamiento de la app
