@@ -1,0 +1,97 @@
+/* You can add global styles to this file, and also import other style files */
+/* Fondo de la página principal */
+body {
+  color: #333333; /* Gris oscuro para el texto */
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Estilo para el navbar */
+.navbar {
+  transition: all 0.3s ease;
+}
+
+.navbar:hover {
+  background-color: #333; /* Gris oscuro al pasar el ratón */
+}
+
+.navbar-brand {
+  font-weight: bold;
+  color: #fff !important;
+}
+
+.nav-link {
+  color: #fff !important;
+}
+
+.navbar-dark.bg-dark {
+  background-color: #4a90e2 !important; /* Verde Esmeralda */
+}
+
+/* Cambiar el color de los enlaces de la barra de navegación */
+.navbar-dark .navbar-nav .nav-link {
+  color: #ffffff !important;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: #F4A261 !important; /* Naranja suave al pasar el ratón */
+}
+
+/* Estilo para el footer */
+footer {
+  color: #f8f9fa;
+  padding: 20px 0;
+}
+
+/* Cambiar el fondo del footer */
+footer.bg-dark {
+  background-color: #4a90e2 !important; /* Azul oscuro */
+}
+
+/* Cambiar el color del texto en el footer */
+footer.bg-dark .text-white {
+  color: #F4A261 !important; /* Naranja suave para el texto */
+}
+
+/* Personalización de los botones */
+.btn-primary {
+  background-color: #F4A261; /* Naranja suave */
+  border: none;
+  border-radius: 5px;
+}
+
+.btn-primary:hover {
+  background-color: #D87A3E; /* Naranja más fuerte */
+}
+
+/* Cards con sombra y animación */
+.card {
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+  min-height: 300px;
+}
+
+.card-header {
+  background-color: #F4A261; /* Naranja suave para el encabezado */
+  color: white;
+}
+
+.card img {
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.card-body {
+  min-height: 150px;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.card-text {
+  font-size: 0.9rem;
+  color: #555;
+}
